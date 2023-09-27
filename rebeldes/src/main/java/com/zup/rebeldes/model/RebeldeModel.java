@@ -1,7 +1,5 @@
 package com.zup.rebeldes.model;
 
-import com.zup.rebeldes.model.ItemModell;
-import com.zup.rebeldes.model.Localizacao;
 import com.zup.rebeldes.service.CadastroRebelde;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -12,8 +10,9 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-@Table(name = "rebeldes")
-public class RebeldeModell {
+@Table(name = "/rebeldes")
+@Entity
+public class RebeldeModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -30,13 +29,13 @@ public class RebeldeModell {
     @Column(name = "localizacao_rebelde")
     private Localizacao localizacao;
 
-    @Column(name = "inventario_rebelde")
-    private List<ItemModell> inventario ;
+    @OneToMany(mappedBy = "rebeldes", cascade = CascadeType.ALL)
+    private List<ItemModel> inventario ;
 
     //@Column(name = "denuncia_rebelde")
     private int denuncia;
 
-    public RebeldeModell(CadastroRebelde cadastroRebelde){
+    public RebeldeModel(CadastroRebelde cadastroRebelde){
         this.nome= cadastroRebelde.nome();
         this.idade=cadastroRebelde.idade();
         this.genero=cadastroRebelde.genero();

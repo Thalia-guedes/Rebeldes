@@ -1,7 +1,7 @@
 package com.zup.rebeldes.controller;
 
 import com.zup.rebeldes.service.CadastroRebelde;
-import com.zup.rebeldes.model.RebeldeModell;
+import com.zup.rebeldes.model.RebeldeModel;
 import com.zup.rebeldes.repository.RebeldeRepository;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
@@ -18,7 +18,7 @@ public class RebeldeController {
     @RequestMapping
     @Transactional
     public ResponseEntity cadastrar(@RequestBody @Valid CadastroRebelde cadastroRebelde){
-        var rebelde=new RebeldeModell(cadastroRebelde);
+        var rebelde=new RebeldeModel(cadastroRebelde);
         rebeldeRepository.save(rebelde);
         return ResponseEntity.ok(rebelde);
 
