@@ -29,7 +29,7 @@ public class RebeldeModel {
     @Column(name = "localizacao_rebelde")
     private Localizacao localizacao;
 
-    @OneToMany(mappedBy = "rebeldes", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "rebelde", cascade = CascadeType.ALL)
     private List<ItemModel> inventario ;
 
     //@Column(name = "denuncia_rebelde")
