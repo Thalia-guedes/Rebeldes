@@ -1,4 +1,4 @@
-package com.zup.rebeldes;
+package com.zup.rebeldes.model;
 
 public class ItemModell {
     private String nome;
