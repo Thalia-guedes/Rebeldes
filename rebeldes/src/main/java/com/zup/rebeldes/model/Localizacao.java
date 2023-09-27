@@ -1,4 +1,4 @@
-package com.zup.rebeldes;
+package com.zup.rebeldes.model;
 
 public enum Localizacao {
     BASE_1,
