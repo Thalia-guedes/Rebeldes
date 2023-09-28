@@ -4,13 +4,14 @@ import com.zup.rebeldes.service.CadastroRebelde;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 import lombok.Setter;
 
 import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-@Table(name = "/rebeldes")
+@Table(name = "rebeldes")
 @Entity
 public class RebeldeModel {
     @Id
@@ -29,16 +30,17 @@ public class RebeldeModel {
     @Column(name = "localizacao_rebelde")
     private Localizacao localizacao;
 
+    @Embedded
     @OneToMany(mappedBy = "rebelde", cascade = CascadeType.ALL)
     private List<ItemModel> inventario ;
 
-    //@Column(name = "denuncia_rebelde")
+    @Column(name = "denuncia_rebelde")
     private int denuncia;
 
     public RebeldeModel(CadastroRebelde cadastroRebelde){
-        this.nome= cadastroRebelde.nome();
-        this.idade=cadastroRebelde.idade();
-        this.genero=cadastroRebelde.genero();
-        this.localizacao=cadastroRebelde.localizacao();
+        this.nome= cadastroRebelde.nome_rebelde();
+        this.idade=cadastroRebelde.idade_rebelde();
+        this.genero=cadastroRebelde.genero_rebelde();
+        this.localizacao=cadastroRebelde.localizacao_rebelde();
     }
 }
