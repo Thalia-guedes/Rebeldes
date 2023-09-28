@@ -1,8 +1,9 @@
 package com.zup.rebeldes.controller;
 
-import com.zup.rebeldes.service.CadastroRebelde;
+import com.zup.rebeldes.CadastroRebeldeInventario;
 import com.zup.rebeldes.model.RebeldeModel;
 import com.zup.rebeldes.repository.RebeldeRepository;
+import com.zup.rebeldes.service.CadastroRebelde;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,11 +20,10 @@ public class RebeldeController {
 
     @RequestMapping
     @Transactional
-    public ResponseEntity cadastrar(@RequestBody @Valid CadastroRebelde cadastroRebelde){
-        var rebelde=new RebeldeModel(cadastroRebelde);
+    public ResponseEntity cadastrarRebelde(@RequestBody @Valid CadastroRebeldeInventario cadastro){
+        var rebelde=new RebeldeModel(cadastro.getCadastroRebelde());
+        cadastro.preencherInventario(rebelde);
         rebeldeRepository.save(rebelde);
         return ResponseEntity.ok(rebelde);
-
     }
-
 }

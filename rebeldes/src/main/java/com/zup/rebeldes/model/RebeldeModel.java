@@ -1,12 +1,13 @@
 package com.zup.rebeldes.model;
 
+import com.zup.rebeldes.service.CadastroInventario;
 import com.zup.rebeldes.service.CadastroRebelde;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 @NoArgsConstructor
 @Getter
@@ -32,7 +33,7 @@ public class RebeldeModel {
 
     @Embedded
     @OneToMany(mappedBy = "rebelde", cascade = CascadeType.ALL)
-    private List<ItemModel> inventario ;
+    private List<InventarioModel> inventario ;
 
     @Column(name = "denuncia_rebelde")
     private int denuncia;
@@ -42,5 +43,6 @@ public class RebeldeModel {
         this.idade=cadastroRebelde.idade_rebelde();
         this.genero=cadastroRebelde.genero_rebelde();
         this.localizacao=cadastroRebelde.localizacao_rebelde();
+        this.inventario = new ArrayList<>();
     }
 }
